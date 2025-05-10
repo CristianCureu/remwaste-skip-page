@@ -1,54 +1,43 @@
-# React + TypeScript + Vite
+# 🗑️ Skip Selection Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, animated **skip hire selection interface** built with **React**, styled using **Tailwind CSS**, and enhanced with **Framer Motion** for smooth animations.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Animated Skip Cards** - Responsive cards with 3D-like image hover effects and smooth selection animations
+- **Responsive UI** - Clean layout across all screen sizes
+- **Animated Footer Panel** - Dynamic updates based on selection with smooth transitions
+- **Mobile & Desktop Support** - Optimized for touch and mouse interactions
 
-## Expanding the ESLint configuration
+## 🧱 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Tool              | Purpose                        |
+| ----------------- | ------------------------------ |
+| **React**         | UI and component logic         |
+| **Tailwind CSS**  | Styling and responsive design  |
+| **Framer Motion** | Animations and transitions     |
+| **TypeScript**    | Type safety and prop contracts |
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🚀 Usage
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Install dependencies
+   npm install # or yarn install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Required packages
+   npm install framer-motion tailwindcss
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+3. Run the app
+   npm run dev # or yarn dev
+
+## 🧩 Component Highlights
+
+### `Skip.tsx`
+
+- Uses `motion.div` and `motion.img` for animations
+- Handles both hover and click events
+- Maintains persistent animation for selected card
+
+### `Footer.tsx`
+
+- Uses `AnimatePresence` for smooth transitions
+- Responsive layout for actions and pricing
