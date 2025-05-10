@@ -1,6 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { SkipType } from "../types";
 import { useEffect } from "react";
+import { Cuboid, TriangleAlert } from "lucide-react";
 
 type SkipProps = {
   skip: SkipType;
@@ -48,11 +49,13 @@ export default function Skip({ skip, selectedSkip, onSelect }: SkipProps) {
           });
         }
       }}
-      animate={{ scale: isSelected ? 1.02 : 1 }}
+      whileHover={{ scale: isSelected ? 1.03 : 1.01 }}
+      animate={{ scale: isSelected ? 1.03 : 1 }}
       transition={springTransition}
       className={`
-        group relative rounded-lg will-change-transform
-        border backdrop-blur-md overflow-hidden
+        group relative rounded-lg
+        transform-gpu
+        border overflow-hidden
         border-gray-700 hover:border-gray-700
         bg-gray-900/90 text-white cursor-pointer
         shadow-[0_8px_24px_rgba(100,116,139,0.2)] 
@@ -61,18 +64,26 @@ export default function Skip({ skip, selectedSkip, onSelect }: SkipProps) {
       `}
     >
       {/* Image */}
-      <motion.div
-        animate={imageControls}
-        transition={{ type: "spring", stiffness: 300, damping: 18 }}
-        className="relative h-36 md:h-48 w-full overflow-hidden rounded-t-lg bg-gray-900"
-      >
+      <div className="relative h-36 md:h-48 w-full overflow-hidden rounded-t-lg bg-gray-900">
         <motion.img
+          animate={imageControls}
+          transition={{ type: "spring", stiffness: 300, damping: 18 }}
           src="https://yozbrydxdlcxghkphhtq.supabase.co/storage/v1/object/public/skips/skip-sizes/5-yarder-skip.jpg"
           alt="skip"
           className="w-full h-full object-cover 
           [mask-image:linear-gradient(to_top,transparent_0%,black_40%,black_100%)]"
         />
-      </motion.div>
+
+        {!skip.allowed_on_road && (
+          <div className="z-100 absolute bottom-2 left-4 md:left-6 bg-black/60 text-yellow-300 text-xs px-2 py-1 rounded-md flex items-center shadow-md">
+            <TriangleAlert size={14} className="mr-1" />
+            Not allowed on the road
+          </div>
+        )}
+        <div className="absolute top-2 left-4 md:left-6 bg-black/60 text-white text-sm font-semibold px-2 py-1 rounded-md shadow-sm">
+          {skip.size} yd
+        </div>
+      </div>
 
       {/* Content */}
       <div className="p-4 md:p-6 space-y-3 bg-gray-900 backdrop-blur-md rounded-b-lg">
@@ -97,7 +108,14 @@ export default function Skip({ skip, selectedSkip, onSelect }: SkipProps) {
                 : "bg-gray-700/80 text-white hover:bg-gray-700"
             }`}
         >
-          {isSelected ? "Selected" : "Select This Skip"}
+          {isSelected ? (
+            "Selected"
+          ) : (
+            <div className="flex items-center">
+              Select this skip
+              <Cuboid size={18} className="ml-2" />
+            </div>
+          )}
         </button>
       </div>
     </motion.div>
